@@ -1,0 +1,39 @@
+server:
+  port: 8071
+eureka:
+  client:
+    service-url: 
+      defaultZone: http://localhost:8070/eureka/
+mybatis:
+  config-location: classpath:/mybatis-config.xml
+spring:
+  application:
+    name: proxy-client
+  datasource:
+    druid:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1:3306/music-story?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
+      username: root
+      password: 123456
+      initial-size: 5
+      min-idle: 10
+      max-active: 50
+      max-wait: 1800
+      time-between-eviction-runs-millis: 300
+      test-on-borrow: false
+  quartz:
+    properties: 
+      org:
+        quartz:
+          scheduler:
+            instanceName: proxyScheduler
+          threadPool:
+            class: org.quartz.simpl.SimpleThreadPool
+            threadCount: 10
+            threadPriority: 5
+    job-store-type: MEMORY
+app:
+  http:
+    proxyLoadTimeout: 10
+    proxyValidateTimeout: 8
+  
